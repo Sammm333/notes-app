@@ -1,0 +1,233 @@
+/* Base and page layout like the photo */
+:root {
+  --bg: #f7efe3;            /* light beige */
+  --text: #2b2b2b;
+  --muted: #7a7a7a;
+  --primary: #4CAF50;
+  --danger: #e74c3c;
+  --fab: #2ecc71;
+  --fab-hover: #27ae60;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.page {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  min-height: 100vh;
+  align-items: center;
+  justify-items: center;
+  padding: 24px;
+}
+
+.left-title {
+  justify-self: end;
+  text-align: right;
+  margin-right: 24px;
+}
+.left-title .emoji {
+  font-size: 28px;
+  display: inline-block;
+  margin-right: 8px;
+}
+.left-title h1 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+/* Phone frame */
+.phone {
+  width: 380px;
+  max-width: 90vw;
+  background: #111;
+  border-radius: 36px;
+  box-shadow:
+    0 30px 60px rgba(0,0,0,0.25),
+    0 10px 20px rgba(0,0,0,0.15);
+  padding: 14px;
+  position: relative;
+}
+.phone-notch {
+  width: 40%;
+  height: 10px;
+  background: #000;
+  border-radius: 0 0 12px 12px;
+  margin: 0 auto 8px auto;
+}
+.phone-inner {
+  background: #f9fafb;
+  border-radius: 28px;
+  padding: 18px 16px 70px 16px; /* extra bottom padding for FAB */
+  min-height: 600px;
+  position: relative;
+}
+
+/* Top actions bar */
+.top-bar {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+.icon-btn {
+  border: none;
+  background: transparent;
+  font-size: 18px;
+  cursor: pointer;
+  color: #444;
+}
+
+/* Form area */
+.note-form {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.note-input {
+  padding: 12px 14px;
+  border: 1px solid #d7d7d7;
+  border-radius: 12px;
+  background: #fff;
+  font-size: 14px;
+}
+.note-input::placeholder { color: #9a9a9a; }
+.note-input.pulse {
+  animation: pulse 0.35s ease-in-out;
+}
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.5); }
+  100% { box-shadow: 0 0 0 8px rgba(46, 204, 113, 0); }
+}
+.clear-all {
+  padding: 12px 16px;
+  text-decoration: none;
+  border-radius: 12px;
+  background: var(--danger);
+  color: #fff;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* Search styling */
+.search-wrapper {
+  position: relative;
+  margin: 8px 0 6px 0;
+}
+.search-input {
+  width: 100%;
+  padding: 12px 40px 12px 14px;
+  border: 1px solid #d7d7d7;
+  border-radius: 22px;
+  background: #fff;
+  font-size: 14px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+.search-clear {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background: transparent;
+  font-size: 16px;
+  cursor: pointer;
+  color: #888;
+}
+.search-clear:hover { color: #333; }
+.search-count {
+  margin: 0 2px 10px 2px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* Cards list styled like the photo */
+.cards {
+  display: grid;
+  gap: 12px;
+}
+.card {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  padding: 14px 16px;
+  border-radius: 18px;
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+}
+.card-text {
+  margin: 0;
+  font-weight: 600;
+  line-height: 1.35;
+}
+.card-delete {
+  text-decoration: none;
+  color: #fff;
+  font-weight: 700;
+  padding-left: 12px;
+}
+
+/* Color palette aligned to the sample: pink, red, green, yellow, blue */
+.color-0 { background: #ff8fa3; }  /* pink */
+.color-1 { background: #ff6b6b; }  /* red */
+.color-2 { background: #55efc4; }  /* green */
+.color-3 { background: #ffe66d; color: #2b2b2b; } /* yellow with dark text */
+.color-4 { background: #74b9ff; }  /* blue */
+
+/* Highlight matches in search */
+.hl {
+  background: #fff59d;
+  color: inherit;
+  border-radius: 4px;
+  padding: 0 2px;
+}
+
+/* Empty state */
+.empty {
+  text-align: center;
+  color: var(--muted);
+  padding: 20px;
+}
+
+/* Floating action button (plus icon) */
+.fab {
+  position: absolute;
+  right: 18px;
+  bottom: 18px;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  border: none;
+  background: var(--fab);
+  color: #fff;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(46, 204, 113, 0.4);
+}
+.fab:hover { background: var(--fab-hover); }
+
+/* Dark mode inside phone */
+body.dark .phone-inner {
+  background: #1f1f1f;
+}
+body.dark .note-input,
+body.dark .search-input {
+  background: #2a2a2a;
+  color: #f2f2f2;
+  border-color: #555;
+}
+body.dark .note-input::placeholder,
+body.dark .search-input::placeholder { color: #aaa; }
